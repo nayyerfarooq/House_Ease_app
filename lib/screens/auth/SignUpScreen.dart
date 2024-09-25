@@ -135,24 +135,28 @@ class SignUpScreen extends StatelessWidget {
                           CustomTextField(
                             label: 'Full Name',
                             hint: 'Enter your full name',
+                            controller: _nameController,
                           ),
                           SizedBox(height: 20),
                           CustomTextField(
                             label: 'Email Address',
                             hint: 'Enter your email',
                             keyboardType: TextInputType.emailAddress,
+                            controller: _emailController,
                           ),
                           SizedBox(height: 20),
                           CustomTextField(
                             label: 'Password',
                             hint: 'Enter your password',
                             isPassword: true,
+                            controller: _passwordController,
                           ),
                           SizedBox(height: 20),
                           CustomTextField(
                             label: 'Confirm Password',
                             hint: 'Confirm your password',
                             isPassword: true,
+                            controller: _confirmPasswordController,
                           ),
                           SizedBox(height: 30),
                           CustomButton(

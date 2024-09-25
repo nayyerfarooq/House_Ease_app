@@ -14,8 +14,6 @@ import 'package:shift_ease_fyp/screens/home/shift_house_page.dart';
 import 'package:shift_ease_fyp/screens/mycart/my_cart_page.dart';
 import 'package:shift_ease_fyp/screens/onboarding/onboarding_screen.dart';
 import 'package:shift_ease_fyp/screens/auth/login_screen.dart';
-import 'package:shift_ease_fyp/screens/auth/email_verification_screen.dart';
-import 'package:shift_ease_fyp/screens/auth/reset_password_screen.dart';
 import 'package:shift_ease_fyp/screens/home/home_screen.dart';
 import 'package:shift_ease_fyp/screens/ads/my_ads_page.dart';
 import 'package:shift_ease_fyp/screens/chat/chat_screen.dart';
@@ -43,8 +41,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: AppRoutes.login, page: () => LoginScreen()),
         GetPage(name: AppRoutes.signup, page: () => SignUpScreen()),
         GetPage(name: AppRoutes.forgotPassword, page: () => ForgotPasswordScreen()),
-        GetPage(name: AppRoutes.emailVerification, page: () => EmailVerificationScreen()),
-        GetPage(name: AppRoutes.resetPassword, page: () => ResetPasswordScreen()),
         GetPage(name: AppRoutes.home, page: () => HomeScreen()),
         GetPage(name: AppRoutes.myAds, page: () => MyAdsPage()),
         GetPage(name: AppRoutes.myCart, page: () => MyCartPage()),

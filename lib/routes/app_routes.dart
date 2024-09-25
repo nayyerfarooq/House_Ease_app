@@ -4,8 +4,6 @@ class AppRoutes {
   static const String login = '/login';
   static const String signup = '/signup';
   static const String forgotPassword = '/forgot-password';
-  static const String emailVerification = '/email-verification';
-  static const String resetPassword = '/reset-password';
   static const String home = '/home';
   static const String myAds = '/my-ads';
   static const String chat = '/chat';
