@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "66661545222",
+    "project_id": "house-easefyp",
+    "storage_bucket": "house-easefyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66661545222:android:c6e3d207e9012d73409a87",
+        "android_client_info": {
+          "package_name": "com.example.shift_ease_fyp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxtNe4Pl7--XPr7acMzcyjScEf0c2-LGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
