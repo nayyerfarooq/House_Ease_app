@@ -57,7 +57,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                   radius: 70,
                   backgroundImage: _image != null
                       ? FileImage(_image!)
-                      : const AssetImage('assets/images/logo_back.png') as ImageProvider,
+                      : const AssetImage('assets/images/applogo.png') as ImageProvider,
                   backgroundColor: Colors.grey.shade200,
                 ),
                 Positioned(
@@ -86,11 +86,11 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
               ],
             ),
             const SizedBox(height: 40),
-            buildTextField('Name', 'Nayyer', false),
+            buildTextField('Name', '${widget.userData?['username']}', false),
             const SizedBox(height: 20),
-            buildTextField('Email', 'nayyer123@gmail.com', false),
+            buildTextField('Email','${widget.userData?['email']}', false),
             const SizedBox(height: 20),
-            buildTextField('Password', '************', true),
+            buildTextField('Password', '${widget.userData?['password']}', true),
             const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

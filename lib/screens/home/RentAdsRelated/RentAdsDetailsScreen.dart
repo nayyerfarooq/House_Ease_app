@@ -98,7 +98,7 @@ class PropertyDetailScreen extends StatelessWidget {
                   Obx(() => CustomTextWidget(
                     title:  controller.showFullDescription.value
                         ? property.description
-                        : property.description.substring(0,10),
+                        : property.description.substring(0,5),
                     size: 16, color: Colors.grey,
                   )),
                   GestureDetector(

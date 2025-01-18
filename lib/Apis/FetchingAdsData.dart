@@ -31,13 +31,13 @@ class FetchingAdsData extends GetxController {
 
         for (var ad in rentAdsData) {
           switch (ad.requestStatus) {
-            case 'Active':
+            case 'Approve':
               activeAds.add(ad);
               break;
             case 'Pending':
               pendingAds.add(ad);
               break;
-            case 'Rejected':
+            case 'Reject':
               rejectedAds.add(ad);
               break;
             default:

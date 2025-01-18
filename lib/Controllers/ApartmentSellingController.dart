@@ -71,7 +71,6 @@ class Apartmentsellingcontroller extends GetxController {
         ownerEmail: 'moonshab355@gmail.com',
         requestStatus: 'Pending',
       );
-
       await postRentAd(apartmentData);
 
     } catch (e) {

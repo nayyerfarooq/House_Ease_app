@@ -250,6 +250,8 @@ class _ApartmentSellingScreenState extends State<ApartmentSellingScreen> {
               controller.isLoading.value = true;
               try{
                 controller.sendValues();
+                showSuccessSnackbar('Data Posted Sucessfully');
+                Navigator.pop(context);
               }catch(e){
                 showErrorSnackbar(e.toString());
               }finally{

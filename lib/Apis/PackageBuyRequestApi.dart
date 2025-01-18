@@ -44,7 +44,7 @@ class PackageBuyController extends GetxController {
           'package_id': PackageId.toString(),
           'package_price': PackagePrice.toString(),
           'Company_id': CompanyId.toString(),
-          'OrderPersonId': user!.uid,
+          'OrderPersonId': clientNameController.text,
           'request_status': 'Pending',
         },
       );

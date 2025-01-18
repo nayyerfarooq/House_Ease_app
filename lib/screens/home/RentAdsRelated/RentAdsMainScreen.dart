@@ -22,21 +22,21 @@ class _RentAdsMainScreenState extends State<RentAdsMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            child: CustomTextField(
-              label: 'Search',
-              hint: 'Search Properties',
-            ),
-          ),
-        ),
-      ),
+      // // appBar: AppBar(
+      //   title: Padding(
+      //     padding: const EdgeInsets.all(8.0),
+      //     child: SizedBox(
+      //       child: CustomTextField(
+      //         label: 'Search',
+      //         hint: 'Search Properties',
+      //       ),
+      //     ),
+      //   ),
+      // ),
       body: Obx((){
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
-        } else if (controller.pendingAds.isEmpty) {
+        } else if (controller.activeAds.isEmpty) {
           return const Center(
             child: Text(
               'No Active Ads Found',
@@ -47,9 +47,9 @@ class _RentAdsMainScreenState extends State<RentAdsMainScreen> {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
-                itemCount: controller.pendingAds.length,
+                itemCount: controller.activeAds.length,
                 itemBuilder: (context, index) {
-                  final property = controller.pendingAds[index];
+                  final property = controller.activeAds[index];
                   return Custompropertycard(property: property);
                 },
               ),
