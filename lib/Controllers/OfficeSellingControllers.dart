@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shift_ease_fyp/widgets/custom_snakbar.dart';
 
+import '../Apis/RentAdSubmission.dart';
 import '../Modals/RentAdsModal.dart';
 
 class OfficeSellingController extends GetxController {
@@ -60,7 +61,7 @@ class OfficeSellingController extends GetxController {
       imageFileList.addAll(photos);
     }
   }
-  void sendValues() {
+  Future<void> sendValues() async{
     try{
       RentAdModal officeData = RentAdModal(
            images: imageFileList.map((image) => image.path).toList(),
@@ -80,6 +81,8 @@ class OfficeSellingController extends GetxController {
            requestStatus: 'Pending',
            propertyType: 'Office',
        );
+
+      await postRentAd(officeData);
     }
     catch(e){
       showErrorSnackbar(e.toString());

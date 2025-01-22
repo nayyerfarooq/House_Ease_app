@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:shift_ease_fyp/TeamPortal/Pages/teamMemberDashboard.dart';
+import 'package:shift_ease_fyp/TeamPortal/TeamPortalApis/TeamLeaderLoginApi.dart';
 import 'package:shift_ease_fyp/widgets/CustomTextWidget.dart';
 import '../../screens/auth/login_screen.dart';
 import '../../widgets/CustomElevatedButton.dart';
-import '../Controllers/CompanyFextingController.dart';
+import '../../widgets/custom_snakbar.dart';
+import '../../widgets/custom_text_field.dart';
 
 class TeamMemberLoginPage extends StatelessWidget {
   TeamMemberLoginPage({super.key});
-
-  final TeamCompanyController teamCompanyController = Get.put(
-      TeamCompanyController());
-
+  final TextEditingController _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -27,8 +26,8 @@ class TeamMemberLoginPage extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xFFffffff), // Light gradient color
-                  Color(0xFF2A2D4E), // Dark gradient color
+                  Color(0xFFffffff),
+                  Color(0xFF2A2D4E),
                 ],
               ),
             ),
@@ -62,53 +61,46 @@ class TeamMemberLoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.02),
 
-                  Obx(() {
-                    return DropdownButtonFormField<String>(
-                      value: teamCompanyController.selectedCompany.value.isEmpty
-                          ? null
-                          : teamCompanyController.selectedCompany.value,
-                      items: teamCompanyController.companies
-                          .map((company) =>
-                          DropdownMenuItem<String>(
-                            value: company,
-                            child: Text(
-                              company,
-                              style: TextStyle(fontSize: width * 0.04),
-                            ),
-                          ))
-                          .toList(),
-                      onChanged: (value) {
-                        teamCompanyController.selectedCompany.value = value!;
-                      },
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: 'Select Company',
-                        hintStyle: TextStyle(color: Colors.grey.shade600),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    );
-                  }),
+                  // Obx(() {
+                  //   return DropdownButtonFormField<String>(
+                  //     value: teamCompanyController.selectedCompany.value.isEmpty
+                  //         ? null
+                  //         : teamCompanyController.selectedCompany.value,
+                  //     items: teamCompanyController.companies.map((company) =>
+                  //         DropdownMenuItem<String>(
+                  //           value: company,
+                  //           child: Text(
+                  //             company,
+                  //             style: TextStyle(fontSize: width * 0.04),
+                  //           ),
+                  //         ))
+                  //         .toList(),
+                  //     onChanged: (value) {
+                  //       teamCompanyController.selectedCompany.value = value!;
+                  //     },
+                  //     decoration: InputDecoration(
+                  //       filled: true,
+                  //       fillColor: Colors.white,
+                  //       hintText: 'Select Company',
+                  //       hintStyle: TextStyle(color: Colors.grey.shade600),
+                  //       border: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(16),
+                  //         borderSide: BorderSide.none,
+                  //       ),
+                  //     ),
+                  //   );
+                  // }),
                   SizedBox(height: height * 0.02),
-                  buildInputField(
-                    context,
-                    hintText: 'Enter your email',
-                    icon: Icons.email,
-                    obscureText: false,
+                  CustomTextField(
+                    label: 'Email Address',
+                    hint: 'Enter your email',
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController,
+                    prefixIcon: const Icon(FontAwesomeIcons.addressBook),
+                    fillColor: Colors.white,
+                    fillType: true,
                   ),
                   SizedBox(height: height * 0.02),
-
-                  buildInputField(
-                    context,
-                    hintText: 'Enter your password',
-                    icon: Icons.lock,
-                    obscureText: true,
-                  ),
-                  SizedBox(height: height * 0.03),
-
 
                   CustomElevatedButton(
                     text: 'Login',
@@ -116,8 +108,13 @@ class TeamMemberLoginPage extends StatelessWidget {
                     padding: 12,
                     radius: 12,
                     backcolor: Colors.blue.shade700,
-                    path: () {
-                      Get.to(const TeamMemberDashboard());
+                    path: ()async {
+                      try {
+                          await teamLeaderLogin(email: _emailController.text, occupation: 'Leader');
+
+                      }catch(e) {
+                        showErrorSnackbar(e.toString());
+                      }
                     },
                   ),
                   SizedBox(height: height * 0.02),
@@ -140,54 +137,5 @@ class TeamMemberLoginPage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget buildInputField(BuildContext context,
-      {required String hintText, required IconData icon, required bool obscureText}) {
-    final RxBool isObscured = obscureText
-        .obs;
-
-    return Obx(() =>
-        TextField(
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            hintText: hintText,
-            hintStyle: TextStyle(
-              color: Colors.grey.shade500,
-              fontSize: 16,
-              fontStyle: FontStyle.italic,
-            ),
-            prefixIcon: Icon(
-              icon,
-              color: Colors.blue.shade600,
-              size: 24,
-            ),
-            suffixIcon: IconButton(
-              onPressed: () {
-                isObscured.value = !isObscured.value; // Toggle visibility
-              },
-              icon: Icon(
-                isObscured.value ? Icons.visibility_off : Icons.visibility,
-                color: Colors.blue.shade600,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.blue.shade200, width: 1.5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.blue.shade800, width: 2.0),
-            ),
-            contentPadding: const EdgeInsets.symmetric(
-                vertical: 16.0, horizontal: 12.0),
-          ),
-          obscureText: isObscured.value,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ));
   }
 }

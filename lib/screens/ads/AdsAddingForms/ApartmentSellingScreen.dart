@@ -246,10 +246,10 @@ class _ApartmentSellingScreenState extends State<ApartmentSellingScreen> {
             radius: 10,
             padding: 18,
             backcolor:AppColors.primaryDarkColor,
-            path: (){
+            path: () async{
               controller.isLoading.value = true;
               try{
-                controller.sendValues();
+                await controller.sendValues();
                 showSuccessSnackbar('Data Posted Sucessfully');
                 Navigator.pop(context);
               }catch(e){

@@ -14,10 +14,10 @@ class BottomBarController extends GetxController {
   }
 
   final List<Widget> pages = [
-           HomeScreen(),
+           const HomeScreen(),
            MyAdsPage(),
            MyCartPage(),
-           ChatScreen(),
+           const ChatScreen(),
            ProfileScreen(),
   ];
 }

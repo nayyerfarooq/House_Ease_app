@@ -49,7 +49,7 @@ class FetchingAdsData extends GetxController {
         showErrorSnackbar(errorMessage.value);
       }
     } catch (e) {
-      errorMessage.value = 'An error occurred: $e';
+      errorMessage.value = 'An error occurred';
       showErrorSnackbar(errorMessage.value);
     } finally {
       isLoading(false);

@@ -29,7 +29,6 @@ class CompanyController extends GetxController {
         print('Failed to load company data');
       }
     } catch (e) {
-      showErrorSnackbar('Error: $e');
       print('Error: $e');
     } finally {
       isLoading(false);

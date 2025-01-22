@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:shift_ease_fyp/apiUrl.dart';
 import 'package:shift_ease_fyp/widgets/CustomTextWidget.dart';
 
+import 'ComplaintPage.dart';
+
 class CompanyDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -96,19 +98,20 @@ class CompanyDetailsPage extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
+                        Get.to(() => ComplaintPage(), arguments: company);
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),
-                        shadowColor: Colors.blue.shade700,
-                        elevation: 5,  // Add shadow elevation
+                        shadowColor: Colors.red.shade700,
+                        elevation: 5,
                       ),
                       child: Ink(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Colors.blue.shade700, Colors.blue.shade400],
+                            colors: [Colors.red.shade700, Colors.red.shade400],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -117,16 +120,16 @@ class CompanyDetailsPage extends StatelessWidget {
                         child: Container(
                           alignment: Alignment.center,
                           constraints: BoxConstraints(
-                            maxWidth: MediaQuery.of(context).size.width * 0.6,  // Responsive width
-                            minHeight: 50,  // Minimum height of the button
+                            maxWidth: MediaQuery.of(context).size.width * 0.6,
+                            minHeight: 50,
                           ),
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.contact_phone, color: Colors.white),  // Contact Icon
+                              Icon(Icons.report_problem, color: Colors.white),
                               SizedBox(width: 10),
                               Text(
-                                'Contact Us',
+                                'File Complaint',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

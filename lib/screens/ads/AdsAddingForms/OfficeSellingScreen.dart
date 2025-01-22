@@ -242,10 +242,10 @@ class _OfficeSellingScreenState extends State<OfficeSellingScreen> {
             radius: 10,
             padding: 18,
             backcolor:AppColors.primaryDarkColor,
-            path: (){
+            path: () async{
               controller.isLoading.value = true;
               try{
-                controller.sendValues();
+                await controller.sendValues();
               }catch(e){
                 showErrorSnackbar(e.toString());
               }finally{

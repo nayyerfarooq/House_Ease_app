@@ -12,10 +12,11 @@ class PackageBuyController extends GetxController {
   final TextEditingController clientNameController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
-   var isLoading=false;
+  final RxString selectedPaymentMethod = 'Online'.obs;
+  var isLoading = false.obs;
   User? user = FirebaseAuth.instance.currentUser;
   var CartItemData = <CartItemsModal>[].obs;
-  // Function to select date
+
   Future<void> selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -28,8 +29,11 @@ class PackageBuyController extends GetxController {
     }
   }
 
-  // Function to send data to API
-  Future<void> sendDataToApi(String packageName, int PackageId, int PackagePrice, int CompanyId) async {
+  void setSelectedPaymentMethod(String method) {
+    selectedPaymentMethod.value = method;
+  }
+
+  Future<void> sendDataToApi(String packageName, int packageId, int packagePrice, int companyId,String selectedPaymentMethod) async {
     if (clientNameController.text.isNotEmpty &&
         locationController.text.isNotEmpty &&
         dateController.text.isNotEmpty) {
@@ -41,11 +45,12 @@ class PackageBuyController extends GetxController {
           'location': locationController.text,
           'service_date': dateController.text,
           'package_name': packageName,
-          'package_id': PackageId.toString(),
-          'package_price': PackagePrice.toString(),
-          'Company_id': CompanyId.toString(),
+          'package_id': packageId.toString(),
+          'package_price': packagePrice.toString(),
+          'company_id': companyId.toString(),
           'OrderPersonId': clientNameController.text,
           'request_status': 'Pending',
+          'payment_method': selectedPaymentMethod,
         },
       );
 
@@ -62,11 +67,10 @@ class PackageBuyController extends GetxController {
     }
   }
 
-
   Future<void> getDataFromApi() async {
     String apiUrl = "${ApiUrl.baseUrl}/providerapis/ApprovedOrders/";
     var response = await http.get(Uri.parse(apiUrl));
-    var isLoading= true.obs;
+    var isLoading = true.obs;
     try {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body) as List;
@@ -81,5 +85,4 @@ class PackageBuyController extends GetxController {
       isLoading.value = false;
     }
   }
-
 }

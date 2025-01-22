@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shift_ease_fyp/Controllers/PasswordViewController.dart';
 import 'package:shift_ease_fyp/TeamPortal/Pages/TeamMemberLogin.dart';
@@ -46,6 +47,7 @@ class LoginScreen extends StatelessWidget {
                     hint: 'Enter your email',
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
+                    prefixIcon: const Icon(FontAwesomeIcons.addressBook),
                   ),
                   const SizedBox(height: 20),
                   Obx((){
@@ -55,6 +57,7 @@ class LoginScreen extends StatelessWidget {
                       obscureText: _viewController.show.value,
                       decoration: InputDecoration(
                         labelText: 'Password',
+                        prefixIcon: const Icon(FontAwesomeIcons.lock),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

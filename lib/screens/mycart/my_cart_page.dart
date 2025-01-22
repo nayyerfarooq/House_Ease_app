@@ -31,7 +31,7 @@ class _MyCartPageState extends State<MyCartPage> {
         backgroundColor: Colors.blueAccent,
       ),
       body: Obx(() {
-        if (controller.isLoading) {
+        if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         } else if (controller.CartItemData.isEmpty) {
           return const Center(

@@ -43,7 +43,7 @@ class HouseSellingController extends GetxController {
     }
   }
 
-  void sendValues() async {
+  Future<void> sendValues() async {
     try {
       RentAdModal rentData = RentAdModal(
         propertyType: 'House',
